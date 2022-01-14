@@ -1,0 +1,54 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{ messages[-1] }}");
+        </script>
+    {% endif %}
+{% endwith %}
+
+<head>
+    <style>
+        div.title{
+            background-color: orange;
+            color: black;
+            text-align: center;
+            padding: 30 30 30 30;
+        }
+    </style>
+</head>
+
+<body>
+   <div class="title">
+       <img src = "https://ww.namu.la/s/ca230e4276e71c999bb07a99737b65d635580bad71744166ca551e17f6e7bd875c99f61e583c6ab39c17fafe670288df03d45a660116a65e533e4fca463286934043c32a6959740d9e47c664e73b4c0e" 
+            alt="DGUlogo" width="60" height="60" style="float: left; vertical-align: middle;">
+       <h1>Dongguk University Clubs</h1>
+   </div>
+
+   <!--게시글 작성하기-->
+   <a href="{{url_for('board_write')}}" style = "float:right; margin: 10px">게시글 작성하기</a>
+
+    <br>
+    <table>
+        <thead>
+            <tr style = "height: 80px;">
+                <td style = "text-align: center; width: 70px;"><h3>번호</h3></td>
+                <td style = "text-align: center; width: 600px;"><h3>게시글 제목</h3></td>
+                <td style = "text-align: center; width: 300px"><h3>작성자</h3></td>
+                <td style = "text-align: center; width: 500px"><h3>작성 날짜</h3></td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 반복을 통해 DB에 저장되어 있는 모든 게시글을 출력 -->
+            {% for data in datas %}
+            <tr>
+                <td style = "text-align: center; width: 200px; margin: 5px 5px 5px 5px">{{loop.index}}</td>
+                <td style = "text-align: center; width: 500px; height: 30px; margin: 5px 5px 5px 5px"><a href="{{url_for('board_view', idx=data._id)}}">{{data.title}}</a></td>
+                <td style = "text-align: center; width: 200px; margin: 5px 5px 5px 5px">{{data.name}}</td>
+                <td style = "text-align: center; width: 300px; margin: 5px 5px 5px 5px">{{data.pubdate|formatdatetime}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+</body>
+

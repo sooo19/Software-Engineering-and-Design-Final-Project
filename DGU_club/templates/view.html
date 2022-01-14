@@ -1,0 +1,42 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{ messages[-1] }}");
+        </script>
+    {% endif %}
+{% endwith %}
+
+<head>
+    <style>
+        div.title{
+            background-color: orange;
+            color: black;
+            text-align: center;
+            padding: 30 30 30 30;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <img src = "https://ww.namu.la/s/ca230e4276e71c999bb07a99737b65d635580bad71744166ca551e17f6e7bd875c99f61e583c6ab39c17fafe670288df03d45a660116a65e533e4fca463286934043c32a6959740d9e47c664e73b4c0e" 
+            alt="DGUlogo" width="60" height="60" style="float: left; vertical-align: middle;">
+        <h1>Dongguk University Clubs</h1>
+    </div>
+
+    <br>
+    <a href="{{url_for('lists')}}" style = "float:right; margin: 10px">목록 보기</a>
+
+    <br>
+    <h3 style="border-bottom: 1px solid brown; margin-left: 50px; margin-bottom: 20px; font-size: 25px;">{{result.title}}</h3>
+    <p style="line-height: 200%; margin-left: 50px; color: rgb(82, 80, 80); font-size: 15px;">작성자: {{result.name}}<br>
+        작성 날짜: {{result.pubdate|formatdatetime}}<br>
+    </p>
+    
+    <br>
+    <p style="margin-left: 50px">{{result.contents}}</p>
+
+    <br>
+    <a href="{{url_for('board_edit', idx=result.id)}}" style = "float:right; margin: 10px">게시글 수정</a>
+    <a href="{{url_for('board_delete', idx=result.id)}}" style = "float:right; margin: 10px">게시글 삭제</a>
+</body>

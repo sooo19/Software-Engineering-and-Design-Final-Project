@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            div.title{
+                background-color: orange;
+                color: black;
+                text-align: center;
+                padding: 30 30 30 30;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="title">
+            <img src = "https://ww.namu.la/s/ca230e4276e71c999bb07a99737b65d635580bad71744166ca551e17f6e7bd875c99f61e583c6ab39c17fafe670288df03d45a660116a65e533e4fca463286934043c32a6959740d9e47c664e73b4c0e" 
+            alt="DGUlogo" width="60" height="60" style="float: left; vertical-align: middle;">
+            <h1>Dongguk University Clubs</h1>
+        </div>
+
+        <table style="margin-left: 30px; border-spacing: 15px">
+            <form name="form" method="POST" action="/edit/{{data._id}}">
+            <thead>
+                <h3 style = "border-bottom: 1px solid brown; font-size: 20px; margin-left: 30px">게시글 수정하기</h3>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>작성자</td>
+                    <td><input type="text" name="name" value={{data.name}}></td>
+                </tr>
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" name="title" value={{data.title}}></td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td><textarea name="contents" rows="10" cols="100">{{data.contents}}</textarea></td>
+                </tr>
+                <tr style = "margin:auto;">
+                    <td colspan="2" style="margin-left: 20px;"><input type="submit" value="수정하기"></td>
+                </tr>
+            </tbody>
+            </form>
+        </table>
+    </body>
+</html>
